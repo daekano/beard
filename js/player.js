@@ -1,5 +1,5 @@
 /* 
- * Player Functionality
+ * Beard Functionality
  * Matthew Evans, Autumn 2013
  * No License
  *
@@ -9,7 +9,7 @@
  */
 ;(function($){
 
-	var Player = {
+	var Beard = {
 		// Initialize the player
 		init: function (elm) {
 
@@ -17,27 +17,27 @@
 			var $elm = $(elm);
 
 			// Cache other DOM elements
-			Player.elements = {};
-			Player.elements.$player = $elm;
-			Player.elements.$text = $elm.find('.text');
-			Player.elements.$time = $elm.find('.time');
+			Beard.elements = {};
+			Beard.elements.$player = $elm;
+			Beard.elements.$text = $elm.find('.text');
+			Beard.elements.$time = $elm.find('.time');
 
 			// Instantiate a new Audio object
-			Player.audio = new Audio();
+			Beard.audio = new Audio();
 
 			// Set the source of the audio object if the data-source attribute exists
 			if($elm.attr('data-source')) {
-				Player.setSource($elm.attr('data-source'));
+				Beard.setSource($elm.attr('data-source'));
 			}
 
 			// Set the display text if the data-default attribute exists
-			if(Player.elements.$text.attr('data-default')) {
-				Player.displayText(Player.elements.$text.attr('data-default'));
+			if(Beard.elements.$text.attr('data-default')) {
+				Beard.displayText(Beard.elements.$text.attr('data-default'));
 			}
 
 			// Bind Audio events
-			$(Player.audio).on('timeupdate', Player.displayTime);
-			$(Player.audio).on('canplay', Player.displayTime);
+			$(Beard.audio).on('timeupdate', Beard.displayTime);
+			$(Beard.audio).on('canplay', Beard.displayTime);
 
 			// Bind DOM events
 			$elm.on('click', '.play', this.play);
@@ -46,49 +46,49 @@
 		load: function (options) {
 
 			// Must have a valid source
-			if(!Player.parseValidAudioFormat(options.url)) {
-				Player.error('Invalid audio url.');
+			if(!Beard.parseValidAudioFormat(options.url)) {
+				Beard.error('Invalid audio url.');
 				return;
 			}
 
 			// Stop audio
-			Player.pause();
+			Beard.pause();
 
 			// Set the values
-			Player.displayText(options.text);
-			Player.setSource(options.url);
+			Beard.displayText(options.text);
+			Beard.setSource(options.url);
 
 		},
 		error: function (message) {
 			// Cache current message
-			var prevMessage = Player.elements.$text.text();
+			var prevMessage = Beard.elements.$text.text();
 
 			// Display the error message
-			Player.displayText('Error: ' + message);
+			Beard.displayText('Error: ' + message);
 
 			// After 3 seconds, return to the previous message
 			setInterval(function(){
-				Player.displayText(prevMessage);
+				Beard.displayText(prevMessage);
 			}, 3000)
 		},
 		setSource: function (url) {
 
 			// Set the audio source to the new URL
-			Player.audio.src = url;
+			Beard.audio.src = url;
 
 		},
 		displayText: function (text) {
 
-			Player.elements.$text.text(text);
+			Beard.elements.$text.text(text);
 
 		},
 		displayTime: function () {
 
 			// Parse the time properties fromt the audio object
-			var currentTime = Player.parseSecondsToReadableFormat(Player.audio.currentTime);
+			var currentTime = Beard.parseSecondsToReadableFormat(Beard.audio.currentTime);
 			var duration = '';
-			if(Player.audio.duration) {
-				duration = ' of ' + Player.parseSecondsToReadableFormat(Player.audio.duration);		
+			if(Beard.audio.duration) {
+				duration = ' of ' + Beard.parseSecondsToReadableFormat(Beard.audio.duration);		
 			} else {
 				currentTime = 'loading...';
 			}
@@ -98,7 +98,7 @@
 			var timeString = currentTime + duration;
 
 			// Update the view
-			Player.elements.$time.text(timeString);
+			Beard.elements.$time.text(timeString);
 
 		},
 		parseSecondsToReadableFormat: function (seconds) {
@@ -130,7 +130,7 @@
 				// Check to make sure that the format exists in the whitelist
 				var splitUrl = url.split('.');
 				var ext = splitUrl[splitUrl.length - 1];
-				if( $.inArray(ext, whitelist) > -1 ) {
+				if( $.inArray(ext, whitelist) >= 0 ) {
 					// If it exists, it's valid
 					valid = true;
 				}
@@ -142,32 +142,32 @@
 		play: function () {
 
 			// We use the same buton for play and pause
-			if(Player.playing) {
+			if(Beard.playing) {
 
-				return Player.pause();
+				return Beard.pause();
 
 			}
 
 			// Start audio
-			Player.audio.play();
+			Beard.audio.play();
 
 			// Set a playing property
-			Player.playing = true;
+			Beard.playing = true;
 
 			// Set the DOM element to playing
-			Player.elements.$player.addClass('playing');
+			Beard.elements.$player.addClass('playing');
 
 		},
 		pause: function () {
 
 			// Pause audio
-			Player.audio.pause();
+			Beard.audio.pause();
 
 			// Unset the playing property
-			Player.playing = false;
+			Beard.playing = false;
 
 			// Unset the DOM playing class
-			Player.elements.$player.removeClass('playing');
+			Beard.elements.$player.removeClass('playing');
 
 		}
 	};
@@ -175,24 +175,24 @@
 	// Expose the functions as collection methods.
 	$.extend($.fn, {
 		// This method initializes values from attributes and binds events.
-		player: function () {
+		beard: function () {
 			// We only support one player element (for now)
-			Player.init(this[0]);
+			Beard.init(this[0]);
 			return this;
 		},
 		// Play Method
 		play: function () {
-			Player.play();
+			Beard.play();
 			return this;
 		},
 		// Pause Method
 		pause: function () {
-			Player.pause();
+			Beard.pause();
 			return this;
 		},
 		// Load a new source URL
 		load: function (options) {
-			Player.load(options);
+			Beard.load(options);
 			return this;
 		}
 	});

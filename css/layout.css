@@ -5,11 +5,9 @@
 .pull-left { float: left; }
 
 /* Specific classes */
-.player { min-height: 100px; }
-.controls { height: 100%; padding: 10px; }
-	.controls .play { font-size: 2.8em; padding: 10px; }
+.beard { min-height: 100px; }
+.beard .controls { height: 100%; padding: 10px; }
+	.beard .controls .play { font-size: 2.8em; padding: 10px; }
 
-.display { font-size: 1.1em; height: 100%; padding: 10px; }
-	.display > div { margin: 10px 0; }
-
-.tracklist { font-size: .9em; }
+.beard .display { font-size: 1.1em; height: 100%; padding: 10px; }
+	.beard .display > div { margin: 10px 0; }
