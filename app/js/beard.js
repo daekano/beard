@@ -10,6 +10,7 @@
 ;(function($){
 
 	var Beard = {
+
 		// Initialize the player
 		init: function (elm) {
 
@@ -28,11 +29,6 @@
 			// Set the source of the audio object if the data-source attribute exists
 			if($elm.attr('data-source')) {
 				Beard.setSource($elm.attr('data-source'));
-			}
-
-			// Set the display text if the data-default attribute exists
-			if(Beard.elements.$text.attr('data-default')) {
-				Beard.displayText(Beard.elements.$text.attr('data-default'));
 			}
 
 			// Bind Audio events
@@ -60,6 +56,7 @@
 
 		},
 		error: function (message) {
+
 			// Cache current message
 			var prevMessage = Beard.elements.$text.text();
 
@@ -70,6 +67,7 @@
 			setInterval(function(){
 				Beard.displayText(prevMessage);
 			}, 3000)
+		
 		},
 		setSource: function (url) {
 
@@ -174,27 +172,37 @@
 
 	// Expose the functions as collection methods.
 	$.extend($.fn, {
+
 		// This method initializes values from attributes and binds events.
 		beard: function () {
+
 			// We only support one player element (for now)
 			Beard.init(this[0]);
 			return this;
+
 		},
 		// Play Method
 		play: function () {
+
 			Beard.play();
 			return this;
+
 		},
 		// Pause Method
 		pause: function () {
+
 			Beard.pause();
 			return this;
+
 		},
 		// Load a new source URL
 		load: function (options) {
+
 			Beard.load(options);
 			return this;
+			
 		}
+
 	});
 
 })(Zepto || jQuery);
