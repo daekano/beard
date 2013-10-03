@@ -34,6 +34,7 @@
 
 			// Bind Audio events
 			$(Beard.audio).on('timeupdate', Beard.displayTime);
+			$(Beard.audio).on('timeupdate', Beard.displayProgress);
 			$(Beard.audio).on('canplay', Beard.displayTime);
 
 			// Bind DOM events
@@ -74,6 +75,16 @@
 
 			// Set the audio source to the new URL
 			Beard.audio.src = url;
+
+		},
+		displayProgress: function () {
+
+			var currentTime = Math.round(Beard.audio.currentTime);
+			var totalTime = Math.round(Beard.audio.duration);
+
+			var progressPercent = ( currentTime / totalTime ) * 100;
+
+			Beard.elements.$progress.css('width', progressPercent + '%');
 
 		},
 		displayText: function (text) {
