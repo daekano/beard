@@ -18,10 +18,11 @@
 			var $elm = $(elm);
 
 			// Cache other DOM elements
-			Beard.elements = {};
-			Beard.elements.$player = $elm;
-			Beard.elements.$text = $elm.find('.text');
-			Beard.elements.$time = $elm.find('.time');
+			Beard.elements           = {};
+			Beard.elements.$player   = $elm;
+			Beard.elements.$text     = $elm.find('.text');
+			Beard.elements.$time     = $elm.find('.time');
+			Beard.elements.$progress = $elm.find('.progress');
 
 			// Instantiate a new Audio object
 			Beard.audio = new Audio();
