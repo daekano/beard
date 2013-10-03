@@ -81,16 +81,20 @@
 		},
 		displayProgress: function () {
 
+			// Cache the current and total time
 			var currentTime = Math.round(Beard.audio.currentTime);
 			var totalTime = Math.round(Beard.audio.duration);
 
+			// Compute the percentage out of 100
 			var progressPercent = ( currentTime / totalTime ) * 100;
 
+			// Set the width of the progress bar as a percent value
 			Beard.elements.$progress.css('width', progressPercent + '%');
 
 		},
 		displayText: function (text) {
 
+			// Inject text into the text display element
 			Beard.elements.$text.text(text);
 
 		},
