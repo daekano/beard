@@ -18,10 +18,13 @@
 			var $elm = $(elm);
 
 			// Cache other DOM elements
-			Beard.elements = {};
-			Beard.elements.$player = $elm;
-			Beard.elements.$text = $elm.find('.text');
-			Beard.elements.$time = $elm.find('.time');
+			Beard.elements             = {};
+			Beard.elements.$player     = $elm;
+			Beard.elements.$text       = $elm.find('.text');
+			Beard.elements.$time       = $elm.find('.time');
+			Beard.elements.$progress   = $elm.find('.progress');
+			Beard.elements.$seek       = $elm.find('.seek');
+			Beard.elements.$seekCursor = $elm.find('.seek .cursor');
 			Beard.elements.$play = $elm.find('.play');
 
 			// Instantiate a new Audio object
@@ -34,10 +37,13 @@
 
 			// Bind Audio events
 			$(Beard.audio).on('timeupdate', Beard.displayTime);
+			$(Beard.audio).on('timeupdate', Beard.displayProgress);
 			$(Beard.audio).on('canplay', Beard.displayTime);
 
 			// Bind DOM events
-			$elm.on('click', '.play', this.play);
+			Beard.elements.$player.on('click', '.play', Beard.play);
+			Beard.elements.$seek.on('mousemove', Beard.placeSeekCursor);
+			Beard.elements.$seek.on('click', 'a', Beard.seek);
 
 		},
 		load: function (options) {
@@ -74,6 +80,16 @@
 
 			// Set the audio source to the new URL
 			Beard.audio.src = url;
+
+		},
+		displayProgress: function () {
+
+			var currentTime = Math.round(Beard.audio.currentTime);
+			var totalTime = Math.round(Beard.audio.duration);
+
+			var progressPercent = ( currentTime / totalTime ) * 100;
+
+			Beard.elements.$progress.css('width', progressPercent + '%');
 
 		},
 		displayText: function (text) {
@@ -156,9 +172,6 @@
 			// Set the DOM element to playing
 			Beard.elements.$player.addClass('playing');
 
-			// Manipulate the text
-			Beard.elements.$play.text('Pause');			
-
 		},
 		pause: function () {
 
@@ -171,8 +184,25 @@
 			// Unset the DOM playing class
 			Beard.elements.$player.removeClass('playing');
 
-			// Manipulate the text
-			Beard.elements.$play.text('Play');
+		},
+		seek: function (e) {
+
+			// Divide the width of the player by the positon of the cursor.
+			// Use that percentage to place the currentTime of the track.
+			var beardWidth = Beard.elements.$player.width();
+			var mouseX = e.target.offsetLeft;
+			
+			var seekPercentage = ( mouseX / beardWidth );
+			var duration = Beard.audio.duration;
+			var seekTime = duration * seekPercentage;
+
+			Beard.audio.currentTime = seekTime;
+
+		},
+		placeSeekCursor: function (e) {
+
+			// Place the seek cursor directly on the mouse cursor when hovered.
+			Beard.elements.$seekCursor.css('left', e.offsetX);
 
 		}
 	};
