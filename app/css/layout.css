@@ -1,16 +1,62 @@
 /* Reset */
-* { box-sizing: border-box; }
-
+ * {
+    box-sizing: border-box;
+}
 /* Declarative classes */
-.pull-left { float: left; }
-
+ .pull-left {
+    float: left;
+}
 /* Specific classes */
-.beard .controls { background: rgba(0,0,0,.05); border-top: 1px solid #ccc; 	padding: 10px; position: relative; z-index: 500; }
-	.beard .controls .play { font-size: 1em; padding: 5px; position: relative; z-index: 500; }
-	.beard .controls .progress { background: rgba(0,0,0,.15); height: 100%; position: absolute; top: 0; left: 0; width: 0%; z-index: 100; }
-	.beard .controls .seek { height: 100%; position: absolute; top: 0; left: 0; width: 100%; z-index: 101; }
-	.beard .controls .seek a { display: block; height: 100%; position: relative; }
-	.beard .controls .seek a .cursor { background: rgba(0,0,0,.8); visibility: hidden; height: 100%; left: 0; position: absolute; width: 1px; }
-	.beard .controls .seek a:hover .cursor { display: block; visibility: visible; }
+ .beard .controls {
+    background: rgba(0, 0, 0, .05);
+    border-top: 1px solid #ccc;
+    padding: 10px;
+    position: relative;
+    z-index: 500;
+}
+.beard .controls .play {
+    font-size: 1em;
+    padding: 5px;
+    position: relative;
+    z-index: 500;
+}
+.beard .controls .progress {
+    background: rgba(0, 0, 0, .15);
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    z-index: 100;
 
-.beard .display { font-size: 1.1em; padding: 10px; }
+   transition: width .075s linear; 
+}
+.beard .controls .seek {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 101;
+}
+.beard .controls .seek a {
+    display: block;
+    height: 100%;
+    position: relative;
+}
+.beard .controls .seek a .cursor {
+    background: rgba(0, 0, 0, .8);
+    visibility: hidden;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    width: 1px;
+}
+.beard .controls .seek a:hover .cursor {
+    display: block;
+    visibility: visible;
+}
+.beard .display {
+    font-size: 1.1em;
+    padding: 10px;
+}

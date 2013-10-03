@@ -200,6 +200,8 @@
 		},
 		seek: function (e) {
 
+			console.log(e);
+
 			// Divide the width of the player by the positon of the cursor.
 			// Use that percentage to place the currentTime of the track.
 			var beardWidth = Beard.elements.$player.width();
