@@ -1,2 +1,3 @@
+.beard { border: 1px solid #aaa; }
 .beard.playing .play { background: #FABDB4; }
 .beard .play { background: #B4FABD; }
