@@ -22,6 +22,7 @@
 			Beard.elements.$player = $elm;
 			Beard.elements.$text = $elm.find('.text');
 			Beard.elements.$time = $elm.find('.time');
+			Beard.elements.$play = $elm.find('.play');
 
 			// Instantiate a new Audio object
 			Beard.audio = new Audio();
@@ -155,6 +156,9 @@
 			// Set the DOM element to playing
 			Beard.elements.$player.addClass('playing');
 
+			// Manipulate the text
+			Beard.elements.$play.text('Pause');			
+
 		},
 		pause: function () {
 
@@ -166,6 +170,9 @@
 
 			// Unset the DOM playing class
 			Beard.elements.$player.removeClass('playing');
+
+			// Manipulate the text
+			Beard.elements.$play.text('Play');
 
 		}
 	};
