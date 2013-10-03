@@ -167,7 +167,8 @@
 			// Unset the DOM playing class
 			Beard.elements.$player.removeClass('playing');
 
-		}
+		},
+		seek: function () {}
 	};
 
 	// Expose the functions as collection methods.
