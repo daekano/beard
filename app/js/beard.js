@@ -219,24 +219,17 @@
 	$.extend($.fn, {
 
 		// This method initializes values from attributes and binds events.
-		beard: function () {
+		beard: function (options) {
 
 			// We only support one player element (for now)
 			Beard.init(this[0]);
-			return this;
 
-		},
-		// Play Method
-		play: function () {
+			// If this is for testing purposes we return the Beard object instead.
+			if(options && options.test) {
+				return Beard;
+			}
 
-			Beard.play();
-			return this;
-
-		},
-		// Pause Method
-		pause: function () {
-
-			Beard.pause();
+			// Otherwise we return the jQuery object for chainability.
 			return this;
 
 		},
