@@ -200,7 +200,8 @@
 		},
 		seek: function (e) {
 
-			console.log(e);
+			// Stop the default action/page jumping.
+			e.preventDefault();
 
 			// Divide the width of the player by the positon of the cursor.
 			// Use that percentage to place the currentTime of the track.
