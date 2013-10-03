@@ -25,11 +25,6 @@
 			Beard.elements.$progress   = $elm.find('.progress');
 			Beard.elements.$seek       = $elm.find('.seek');
 			Beard.elements.$seekCursor = $elm.find('.seek .cursor');
-
-			Beard.elements = {};
-			Beard.elements.$player = $elm;
-			Beard.elements.$text = $elm.find('.text');
-			Beard.elements.$time = $elm.find('.time');
 			Beard.elements.$play = $elm.find('.play');
 
 			// Instantiate a new Audio object
