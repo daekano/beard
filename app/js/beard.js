@@ -225,7 +225,7 @@
 			Beard.init(this[0]);
 
 			// If this is for testing purposes we return the Beard object instead.
-			if(options && options.test) {
+			if(options && options.test === true) {
 				return Beard;
 			}
 
