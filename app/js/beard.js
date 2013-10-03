@@ -129,8 +129,7 @@
 			if(trimmedSeconds % 60 == 0) { return  ( trimmedSeconds / 60 ) + ':00'; }
 
 			// If it is more than one minute
-			return Math.round(seconds/60) + ':' + ('0' + Math.round(seconds % 60)).slice(-2);
-
+			return ( '' + (trimmedSeconds / 60))[0] + ':' + ('0' + Math.round(trimmedSeconds % 60)).slice(-2);
 
 		},
 		parseValidAudioFormat: function (url) {
