@@ -155,7 +155,7 @@
 			return valid;
 
 		},
-		computeMouseOffset: function (e) {
+		computeMouseOffsetX: function (e) {
 
 			var parentOffset = $(e.target).parent().offset();
 			return e.pageX - parentOffset.left;
@@ -203,7 +203,7 @@
 			// Divide the width of the player by the positon of the cursor.
 			// Use that percentage to place the currentTime of the track.
 			var beardWidth = Beard.elements.$player.width();
-			var mouseX = Beard.computeMouseOffset(e);
+			var mouseX = Beard.computeMouseOffsetX(e);
 
 			var seekPercentage = ( mouseX / beardWidth );
 			var duration = Beard.audio.duration;
@@ -215,7 +215,7 @@
 		placeSeekCursor: function (e) {
 
 			// Place the seek cursor directly on the mouse cursor when hovered.
-			var mouseX = Beard.computeMouseOffset(e);
+			var mouseX = Beard.computeMouseOffsetX(e);
 			Beard.elements.$seekCursor.css('left', mouseX);
 
 		}
