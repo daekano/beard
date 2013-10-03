@@ -3,9 +3,6 @@
  * Matthew Evans, Autumn 2013
  * No License
  *
- * Dependent on Zepto, though jQuery should work in a pinch. 
- * They have similar APIs, and native JS is used where feasible.
- * Eventually I will test against both dependencies.
  */
 ;(function($){
 
@@ -14,7 +11,7 @@
 		// Initialize the player
 		init: function (elm) {
 
-			// Cache the element as a Zepto object
+			// Cache the element as a jQuery object
 			var $elm = $(elm);
 
 			// Cache other DOM elements
@@ -25,7 +22,7 @@
 			Beard.elements.$progress   = $elm.find('.progress');
 			Beard.elements.$seek       = $elm.find('.seek');
 			Beard.elements.$seekCursor = $elm.find('.seek .cursor');
-			Beard.elements.$play = $elm.find('.play');
+			Beard.elements.$play       = $elm.find('.play');
 
 			// Instantiate a new Audio object
 			Beard.audio = new Audio();
@@ -172,6 +169,9 @@
 			// Set the DOM element to playing
 			Beard.elements.$player.addClass('playing');
 
+			// Set the text
+			Beard.elements.$play.text('Pause');
+
 		},
 		pause: function () {
 
@@ -184,14 +184,18 @@
 			// Unset the DOM playing class
 			Beard.elements.$player.removeClass('playing');
 
+			// Set the text
+			Beard.elements.$play.text('Play');
+
 		},
 		seek: function (e) {
 
 			// Divide the width of the player by the positon of the cursor.
 			// Use that percentage to place the currentTime of the track.
 			var beardWidth = Beard.elements.$player.width();
-			var mouseX = e.target.offsetLeft;
-			
+			var parentOffset = $(e.target).parent().offset();
+			var mouseX = e.pageX - parentOffset.left;
+
 			var seekPercentage = ( mouseX / beardWidth );
 			var duration = Beard.audio.duration;
 			var seekTime = duration * seekPercentage;
@@ -242,4 +246,4 @@
 
 	});
 
-})(Zepto || jQuery);
+})(jQuery);
