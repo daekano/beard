@@ -45,7 +45,7 @@
     position: relative;
 }
 .beard .controls .seek a .cursor {
-    background: rgba(0, 0, 0, .8);
+    background: rgba(0, 0, 0, .3);
     visibility: hidden;
     height: 100%;
     left: 0;
