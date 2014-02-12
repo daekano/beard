@@ -1,7 +1,6 @@
 /* 
  * Beard Functionality
  * Matthew Evans, Autumn 2013
- * No License
  *
  */
 ;(function($){
